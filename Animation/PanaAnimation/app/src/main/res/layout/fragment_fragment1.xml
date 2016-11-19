@@ -1,0 +1,59 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#990099"
+    tools:context="com.example.adnan.panaanimation.Fragment1">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/circle"
+        android:src="@mipmap/mia" />
+
+    Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="New Button"
+    android:id="@+id/button"
+    android:layout_below="@+id/imageView2"
+    android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_above="@+id/imageView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/circle"
+        android:text="New Button"
+        android:textColor="#fff" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignLeft="@+id/button2"
+        android:layout_alignStart="@+id/button2"
+        android:layout_below="@+id/imageView2"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/circle"
+
+        android:text="Chat"
+        android:textColor="#fff" />
+
+    Button
+    style="?android:attr/buttonStyleSmall"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="New Button"
+    android:id="@+id/button4"
+    android:layout_above="@+id/button2"
+    android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>
