@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/PanaRecyclerViewSimple.iml" filepath="$PROJECT_DIR$/PanaRecyclerViewSimple.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CloudMessagingPushExample.iml" filepath="$PROJECT_DIR$/CloudMessagingPushExample.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
