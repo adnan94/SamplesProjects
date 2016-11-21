@@ -1,0 +1,148 @@
+<html>
+<head>
+<title>TodoActivity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(0,128,0); font-weight: bold; }
+.s3 { color: rgb(128,128,128); font-style: italic; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+TodoActivity.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">package </span><span class="s1">com.example.adnan.myapplication; 
+ 
+</span><span class="s0">import </span><span class="s1">android.content.Intent; 
+</span><span class="s0">import </span><span class="s1">android.support.v7.app.AppCompatActivity; 
+</span><span class="s0">import </span><span class="s1">android.os.Bundle; 
+</span><span class="s0">import </span><span class="s1">android.util.Log; 
+</span><span class="s0">import </span><span class="s1">android.view.Menu; 
+</span><span class="s0">import </span><span class="s1">android.view.MenuItem; 
+</span><span class="s0">import </span><span class="s1">android.view.View; 
+</span><span class="s0">import </span><span class="s1">android.widget.BaseAdapter; 
+</span><span class="s0">import </span><span class="s1">android.widget.Button; 
+</span><span class="s0">import </span><span class="s1">android.widget.EditText; 
+</span><span class="s0">import </span><span class="s1">android.widget.ListView; 
+</span><span class="s0">import </span><span class="s1">android.widget.Toast; 
+ 
+</span><span class="s0">import </span><span class="s1">com.firebase.client.ChildEventListener; 
+</span><span class="s0">import </span><span class="s1">com.firebase.client.DataSnapshot; 
+</span><span class="s0">import </span><span class="s1">com.firebase.client.Firebase; 
+</span><span class="s0">import </span><span class="s1">com.firebase.client.FirebaseError; 
+ 
+</span><span class="s0">import </span><span class="s1">java.util.ArrayList; 
+ 
+</span><span class="s0">public class </span><span class="s1">TodoActivity </span><span class="s0">extends </span><span class="s1">AppCompatActivity { 
+    Firebase myFirebaseRef; 
+    ListView listView; 
+    adapter adap; 
+    ArrayList&lt;String&gt; listOfkeys; 
+ 
+    @Override 
+    </span><span class="s0">protected void </span><span class="s1">onCreate(Bundle savedInstanceState) { 
+        </span><span class="s0">super</span><span class="s1">.onCreate(savedInstanceState); 
+        setContentView(R.layout.activity_todo); 
+        Firebase.setAndroidContext(</span><span class="s0">this</span><span class="s1">); 
+        myFirebaseRef = </span><span class="s0">new </span><span class="s1">Firebase(</span><span class="s2">&quot;https://sylanifirebase.firebaseio.com/&quot;</span><span class="s1">); 
+        listOfkeys = </span><span class="s0">new </span><span class="s1">ArrayList&lt;String&gt;(); 
+        characterstics.Classlist.add(</span><span class="s0">new </span><span class="s1">docs(</span><span class="s2">&quot;dfd&quot;</span><span class="s1">, </span><span class="s2">&quot;dafda&quot;</span><span class="s1">, </span><span class="s2">&quot;adsf&quot;</span><span class="s1">, </span><span class="s2">&quot;dafad&quot;</span><span class="s1">, </span><span class="s2">&quot;dsfdsfs&quot;</span><span class="s1">, </span><span class="s2">&quot;dsf&quot;</span><span class="s1">, </span><span class="s2">&quot;fdsf&quot;</span><span class="s1">)); 
+ 
+        myFirebaseRef.child(</span><span class="s2">&quot;toDoData&quot;</span><span class="s1">).addChildEventListener(</span><span class="s0">new </span><span class="s1">ChildEventListener() { 
+            @Override 
+            </span><span class="s0">public void </span><span class="s1">onChildAdded(DataSnapshot dataSnapshot, String s) { 
+</span><span class="s3">//                listOfkeys.add(dataSnapshot.getKey().toString());</span><span class="s1"> 
+</span><span class="s3">//                Log.d(&quot;keys&quot;, &quot;&quot; + listOfkeys.size());</span><span class="s1"> 
+ 
+                docs d = dataSnapshot.getValue(docs.</span><span class="s0">class</span><span class="s1">); 
+</span><span class="s3">//</span><span class="s1"> 
+</span><span class="s3">//</span><span class="s1"> 
+</span><span class="s3">// public docs(String type, String company, String skill, String education, String description, String salary, String job) {</span><span class="s1"> 
+ 
+ 
+                String type = d.getType().toString(); 
+                String company = d.getCompany().toString(); 
+                String skill = d.getSkill().toString(); 
+                String education = d.getEducation().toString(); 
+                String description = d.getDescription().toString(); 
+                String salary = d.getSalary().toString(); 
+                String job = d.getJob().toString(); 
+ 
+ 
+                characterstics.Classlist.add(</span><span class="s0">new </span><span class="s1">docs(type, company, skill, education, description, salary, job)); 
+</span><span class="s3">//</span><span class="s1"> 
+                Log.d(</span><span class="s2">&quot;size of list&quot;</span><span class="s1">, </span><span class="s2">&quot;&quot; </span><span class="s1">+ chablacacterstics.Classlist.size()); 
+            } 
+ 
+            @Override 
+            </span><span class="s0">public void </span><span class="s1">onChildChanged(DataSnapshot dataSnapshot, String s) { 
+ 
+            } 
+ 
+            @Override 
+            </span><span class="s0">public void </span><span class="s1">onChildRemoved(DataSnapshot dataSnapshot) { 
+ 
+            } 
+ 
+            @Override 
+            </span><span class="s0">public void </span><span class="s1">onChildMoved(DataSnapshot dataSnapshot, String s) { 
+ 
+            } 
+ 
+            @Override 
+            </span><span class="s0">public void </span><span class="s1">onCancelled(FirebaseError firebaseError) { 
+ 
+            } 
+        }); 
+</span><span class="s3">//        for (int i = 1; i &lt; listOfkeys.size(); i++) {</span><span class="s1"> 
+</span><span class="s3">//</span><span class="s1"> 
+</span><span class="s3">//            Log.d(&quot;DAta&quot;, myFirebaseRef.child(listOfkeys.get(1).toString())..toString());</span><span class="s1"> 
+</span><span class="s3">//        }</span><span class="s1"> 
+ 
+        listView = (ListView) findViewById(R.id.listView); 
+        adap = </span><span class="s0">new </span><span class="s1">adapter(</span><span class="s0">this</span><span class="s1">); 
+        listView.setAdapter(adap); 
+        ((Button) findViewById(R.id.job)).setOnClickListener(</span><span class="s0">new </span><span class="s1">View.OnClickListener() { 
+            @Override 
+            </span><span class="s0">public void </span><span class="s1">onClick(View v) { 
+                Intent i = </span><span class="s0">new </span><span class="s1">Intent(TodoActivity.</span><span class="s0">this</span><span class="s1">, Next.</span><span class="s0">class</span><span class="s1">); 
+                startActivity(i); 
+</span><span class="s3">//</span><span class="s1"> 
+            } 
+        }); 
+</span><span class="s3">////        docs doc=</span><span class="s1"> 
+ 
+    } 
+ 
+    @Override 
+    </span><span class="s0">public boolean </span><span class="s1">onCreateOptionsMenu(Menu menu) { 
+        </span><span class="s3">// Inflate the menu; this adds items to the action bar if it is present.</span><span class="s1"> 
+        getMenuInflater().inflate(R.menu.menu_todo, menu); 
+        </span><span class="s0">return true</span><span class="s1">; 
+    } 
+ 
+    @Override 
+    </span><span class="s0">public boolean </span><span class="s1">onOptionsItemSelected(MenuItem item) { 
+        </span><span class="s3">// Handle action bar item clicks here. The action bar will</span><span class="s1"> 
+        </span><span class="s3">// automatically handle clicks on the Home/Up button, so long</span><span class="s1"> 
+        </span><span class="s3">// as you specify a parent activity in AndroidManifest.xml.</span><span class="s1"> 
+        </span><span class="s0">int </span><span class="s1">id = item.getItemId(); 
+ 
+        </span><span class="s3">//noinspection SimplifiableIfStatement</span><span class="s1"> 
+        </span><span class="s0">if </span><span class="s1">(id == R.id.action_settings) { 
+            </span><span class="s0">return true</span><span class="s1">; 
+        } 
+ 
+        </span><span class="s0">return super</span><span class="s1">.onOptionsItemSelected(item); 
+    } 
+} 
+</span></pre>
+</body>
+</html>

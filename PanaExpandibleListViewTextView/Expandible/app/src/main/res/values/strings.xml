@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Practivcee</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
+       <string name="desc_content">     Adnan Ahmed \n
+           hundreds of millions of mobile devices in more than 190 countries around the world. It\'s the largest installed base of any mobile platform and growing fast—every day another million users power up their Android devices for the first time and start looking for apps, games, and other digital content.
+
+Android gives you a world-class platform for creating apps and games for Android users everywhere, as well as an open marketplace for distributing to them instantly.
+</string>
+</resources>

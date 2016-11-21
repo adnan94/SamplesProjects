@@ -1,0 +1,155 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:background="#97A4AE"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.adnan.myapplication.Next">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Name"
+        android:text="Job :"
+        android:textSize="16dp"
+        android:layout_marginTop="40dp"
+        />
+<EditText
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/jobName"
+    android:layout_toRightOf="@+id/Name"
+    android:layout_alignBaseline="@+id/Name"
+    android:layout_alignParentRight="true"
+    />
+    <TextView
+        android:id="@+id/jobType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Job Type :"
+        android:layout_marginBottom="20dp"
+        android:layout_below="@+id/Name"
+        android:layout_marginTop="20dp"
+        />
+
+    <TextView
+        android:id="@+id/Company"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/jobType"
+        android:layout_marginBottom="20dp"
+
+        android:text="Company :" />
+
+    <TextView
+        android:id="@+id/Education"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Company"
+        android:layout_marginBottom="20dp"
+
+        android:text="Education :" />
+
+    <TextView
+        android:id="@+id/Skills"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_below="@+id/Education"
+
+        android:text="Job Code :" />
+
+    <TextView
+        android:id="@+id/Salary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Skills"
+        android:layout_marginBottom="20dp"
+
+        android:text="Salary :" />
+
+    <TextView
+        android:id="@+id/Description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Salary"
+        android:layout_marginBottom="20dp"
+
+        android:text="Description :" />
+
+    <EditText
+        android:id="@+id/mjobType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/jobType"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/Description"
+        android:layout_toEndOf="@+id/Description" />
+
+    <EditText
+        android:id="@+id/mCompany"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/Company"
+
+        android:layout_alignRight="@+id/mjobType"
+        android:layout_alignEnd="@+id/mjobType"
+        android:layout_toRightOf="@+id/Description"
+        android:layout_toEndOf="@+id/Description" />
+
+    <EditText
+        android:id="@+id/mEducation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/Education"
+
+        android:layout_alignRight="@+id/mCompany"
+        android:layout_alignEnd="@+id/mCompany"
+        android:layout_toRightOf="@+id/Description"
+        android:layout_toEndOf="@+id/Description" />
+
+    <EditText
+        android:id="@+id/mSkills"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/Skills"
+
+        android:layout_alignRight="@+id/mEducation"
+        android:layout_alignEnd="@+id/mEducation"
+        android:layout_alignLeft="@+id/mEducation"
+        android:layout_alignStart="@+id/mEducation" />
+
+    <EditText
+        android:id="@+id/mSalary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/Salary"
+
+        android:layout_alignRight="@+id/mSkills"
+        android:layout_alignEnd="@+id/mSkills"
+        android:layout_toRightOf="@+id/Description"
+        android:layout_toEndOf="@+id/Description" />
+
+    <EditText
+        android:id="@+id/mDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/Description"
+        android:layout_alignBaseline="@id/Description"
+
+        android:layout_alignRight="@+id/mSalary"
+        android:layout_alignEnd="@+id/mSalary" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Publish"
+        android:id="@+id/button2"
+        android:layout_alignParentBottom="true"
+        android:background="#bd6409"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>

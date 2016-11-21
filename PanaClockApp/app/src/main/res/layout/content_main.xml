@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        >
+
+        <!--<AnalogClock-->
+        <!--android:id="@+id/analogClock"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_centerHorizontal="true" />-->
+
+
+        <TimePicker
+            android:id="@+id/timePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp" />
+
+
+        <Button
+            android:id="@+id/set"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/timePicker"
+            android:layout_centerHorizontal="true"
+            android:text="Set Alarm" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/set"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="Write The Number Of Minutes You Want To Notify Before The Alarm"
+            android:textColor="#000" />
+
+        <EditText
+            android:id="@+id/minutes"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView"
+            android:layout_centerHorizontal="true"
+            android:hint="minutes"
+            android:inputType="number" />
+    </RelativeLayout>
+</ScrollView>
+

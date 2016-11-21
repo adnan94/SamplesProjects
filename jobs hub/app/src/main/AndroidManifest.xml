@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.adnan.myapplication" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/bb"
+        android:label="Jobs Hub"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="Sign Up" >
+        </activity>
+        <activity
+            android:name=".Main2Activity"
+            android:label="Jobs Hub" >
+        </activity>
+        <activity
+            android:name=".signIn"
+            android:label="Sign In" >
+        </activity>
+        <activity
+            android:name=".TodoActivity"
+            android:label="Find Jobs" >
+
+        </activity>
+        <activity
+            android:name=".dialog"
+            android:label="@string/title_activity_dialog" >
+        </activity>
+        <activity
+            android:name=".Next"
+            android:label="Enter New Job" >
+        </activity>
+        <activity
+            android:name=".MainActivity34"
+            android:label="Jobs Hub" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".MyIntentService"
+            android:exported="false" >
+        </service>
+
+    </application>
+
+</manifest>
