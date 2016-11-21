@@ -7,11 +7,7 @@
     android:padding="5dp"
     tools:context="com.example.adnan.panarecyclerview.MainActivity">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        >
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,6 +28,6 @@
                 android:background="#d9d9" />
 
         </LinearLayout>
-    </ScrollView>
+
 
 </RelativeLayout>

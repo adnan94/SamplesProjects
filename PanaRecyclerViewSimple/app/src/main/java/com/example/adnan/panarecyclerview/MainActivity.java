@@ -18,10 +18,10 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         list = new ArrayList<>();
-        list.add(new Person("Ayesha ALi", "20", R.drawable.alia));
-        list.add(new Person("Ramesha Saher", "20", R.drawable.aliaa));
+        list.add(new Person("Ramesha Saher", "20", R.drawable.alia));
+        list.add(new Person("Ramesha Saher", "20", R.drawable.alia));
         list.add(new Person("Natasha Saher", "20", R.drawable.alia));
-        list.add(new Person("kinza Iqbal", "20", R.drawable.aliaa));
+        list.add(new Person("Ramesha Saher", "20", R.drawable.alia));
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv);
 //        RecyclerView recyclerView2 = (RecyclerView) findViewById(R.id.rv2);

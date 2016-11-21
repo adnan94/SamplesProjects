@@ -20,6 +20,8 @@
             android:layout_height="wrap_content"
             android:layout_alignEnd="@+id/button"
             android:layout_alignParentTop="true"
+            android:text="Pakistan"
+
             android:layout_alignRight="@+id/button" />
 
 
@@ -30,6 +32,8 @@
             android:layout_height="wrap_content"
             android:layout_alignEnd="@+id/editText"
             android:layout_alignRight="@+id/editText"
+            android:text="India"
+
             android:layout_below="@+id/editText" />
 
         <EditText
@@ -38,6 +42,8 @@
             android:layout_height="wrap_content"
             android:layout_alignEnd="@+id/editText2"
             android:layout_alignRight="@+id/editText2"
+            android:text="UAE"
+
             android:layout_below="@+id/editText2" />
 
         <EditText
@@ -48,6 +54,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignRight="@+id/editText3"
+            android:text="England"
+
             android:layout_below="@+id/editText3" />
 
         <EditText
@@ -58,6 +66,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignRight="@+id/editText4"
+            android:text="Australia"
+
             android:layout_below="@+id/editText4" />
 
         <EditText
@@ -68,6 +78,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignRight="@+id/editText5"
+            android:text="Ireland"
+
             android:layout_below="@+id/editText5" />
 
         <EditText
@@ -78,6 +90,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignRight="@+id/button"
+            android:text="Italy"
+
             android:layout_below="@+id/editText6" />
 
 
@@ -89,6 +103,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignRight="@+id/editText7"
+            android:text="China"
+
             android:layout_below="@+id/editText7" />
 
         <EditText
@@ -99,6 +115,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignRight="@+id/editText8"
+            android:text="Japan"
+
             android:layout_below="@+id/editText8" />
 
         <EditText
@@ -109,18 +127,22 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignRight="@+id/editText9"
+            android:text="SriLanka"
+
             android:layout_below="@+id/editText9" />
         <Button
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/editText10"
-            android:text="Send" />
+            android:text="Send"
+            />
         <EditText
             android:id="@+id/value"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/button"
+            android:text="30"
             android:inputType="number" />
 
         <EditText
@@ -128,6 +150,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/value"
+            android:text="60"
+
             android:inputType="number" />
 
         <EditText
@@ -135,6 +159,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/value2"
+            android:text="80"
+
             android:inputType="number" />
 
         <EditText
@@ -142,12 +168,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/value3"
+            android:text="70"
+
             android:inputType="number" />
 
         <EditText
             android:id="@+id/value5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="90"
+
             android:layout_below="@+id/value4"
             android:inputType="number" />
 
@@ -156,6 +186,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/value5"
+            android:text="30"
+
             android:inputType="number" />
 
         <EditText
@@ -163,6 +195,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/value6"
+            android:text="88"
+
             android:inputType="number" />
 
         <EditText
@@ -170,6 +204,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/value7"
+            android:text="50"
+
             android:inputType="number" />
 
         <EditText
@@ -177,12 +213,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/value8"
+            android:text="39"
+
             android:inputType="number" />
         <EditText
             android:id="@+id/value10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/value9"
+            android:text="94"
+
             android:inputType="number" />
     </RelativeLayout>
 </ScrollView>
