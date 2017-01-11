@@ -48,24 +48,13 @@ public final class Constants {
     public static final float GEOFENCE_RADIUS_IN_METERS = 100; // 1 mile, 1.6 km
 
     /**
-     * Map for storing information about airports in the San Francisco bay area.
      */
     public static final HashMap<String, LatLng> BAY_AREA_LANDMARKS = new HashMap<String, LatLng>();
     static {
-        // San Francisco International Airport.
-        BAY_AREA_LANDMARKS.put("Apna Ghr", new LatLng(24.9155681,67.1429762));
-        BAY_AREA_LANDMARKS.put("Faiz Ghr", new LatLng(24.9154381,67.1423244));
-        BAY_AREA_LANDMARKS.put("Shani Ghr", new LatLng(24.9114681,67.1429321));
+        BAY_AREA_LANDMARKS.put("Geo 1 Ghr", new LatLng(24.9155681,67.1429762));
+        BAY_AREA_LANDMARKS.put("Geo 2 Ghr", new LatLng(24.9155681,67.1429762));
+        BAY_AREA_LANDMARKS.put("Geo 3 Pana", new LatLng(24.813544,67.049026));
 
-//        BAY_AREA_LANDMARKS.put("Defence", new LatLng(24.8135093,67.04613));
-//        BAY_AREA_LANDMARKS.put("Defence", new LatLng(24.9263,67.1305));
-//        BAY_AREA_LANDMARKS.put("Defence", new LatLng(24.9263,67.1305));
-
-        // Googleplex.
-//        BAY_AREA_LANDMARKS.put("Gulistan e Johar", new LatLng(24.9263,67.1305));
-
-        // Test
-//        BAY_AREA_LANDMARKS.put("Udacity Studio", new LatLng(24.9167,67.0833));
     }
 
 }

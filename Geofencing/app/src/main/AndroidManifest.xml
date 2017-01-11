@@ -19,8 +19,17 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".GeofenceTransitionIntentService" />
+        <receiver android:name=".Reciever">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
 
+        <service android:name=".GeofenceTransitionIntentService" />
+        <service
+            android:name=".MyService"
+            android:enabled="true"
+            android:exported="false"></service>
     </application>
 
 </manifest>
