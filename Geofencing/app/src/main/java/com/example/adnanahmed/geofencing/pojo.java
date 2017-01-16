@@ -10,8 +10,12 @@ public class pojo {
     float radiuse;
     String id;
 
+
     public String getId() {
         return id;
+    }
+
+    public pojo() {
     }
 
     public pojo(double latitude, double longitude, float radius, String id) {

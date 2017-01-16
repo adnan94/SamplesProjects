@@ -37,21 +37,6 @@ public class MyService extends Service implements
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Toast.makeText(getApplicationContext(), "On Start Command", Toast.LENGTH_SHORT).show();
-
-        if (mGoogleApiClient == null) {
-            buildGoogleApiClient();
-        }
-        if (!mGoogleApiClient.isConnected()) {
-            mGoogleApiClient.connect();
-        }
-        populateGeofenceList();
-        Register();
-        return super.onStartCommand(intent, flags, startId);
-    }
-
-    @Override
-    public void onCreate() {
         Toast.makeText(getApplicationContext(), "On Create", Toast.LENGTH_SHORT).show();
         mGeofenceList = new ArrayList<Geofence>();
 
@@ -61,6 +46,26 @@ public class MyService extends Service implements
             buildGoogleApiClient();
         }
 
+
+//        Toast.makeText(getApplicationContext(), "On Start Command", Toast.LENGTH_SHORT).show();
+
+        if (mGoogleApiClient == null) {
+            buildGoogleApiClient();
+        }
+        if (!mGoogleApiClient.isConnected()) {
+            buildGoogleApiClient();
+            mGoogleApiClient.connect();
+        }
+        if(mGoogleApiClient.isConnected()){
+//            populateGeofenceList();
+            Register();
+
+        }
+        return super.onStartCommand(intent, flags, startId);
+    }
+
+    @Override
+    public void onCreate() {
 
         super.onCreate();
     }
@@ -174,7 +179,7 @@ public class MyService extends Service implements
                     "Geofences Added",
                     Toast.LENGTH_SHORT
             ).show();
-            stopSelf();
+//            stopSelf();
         } else {
             // Get the status code for the error and log it using a user-friendly message.
             String errorMessage = GeofenceErrorMessages.getErrorString(this,

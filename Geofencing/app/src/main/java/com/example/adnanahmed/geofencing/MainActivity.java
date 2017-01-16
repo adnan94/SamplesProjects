@@ -28,6 +28,11 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.StreetViewPanoramaCamera;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.w3c.dom.Text;
 
@@ -44,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements
     ListView listView;
     ArrayList<pojo> list;
     Adaptor adaptor;
-//    = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,31 +61,48 @@ public class MainActivity extends AppCompatActivity implements
         adaptor = new Adaptor(this, list);
         buildGoogleApiClient();
         // Get the geofences used. Geofence data is hard coded in this sample.
-        populateGeofenceList();
+//        populateGeofenceList();
+        getListOfFences();
+
         // Kick off the request to build GoogleApiClient.
         ((Button) findViewById(R.id.button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startService(new Intent(MainActivity.this,MyService.class));
+//                startService(new Intent(MainActivity.this,MyService.class));
 
-//                if (!mGoogleApiClient.isConnected()) {
-//                    Toast.makeText(MainActivity.this, "Not Connected", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//
-//                try {
-//                    LocationServices.GeofencingApi.addGeofences(
-//                            mGoogleApiClient,
-//                            // The GeofenceRequest object.
-//                            getGeofencingRequest(),
-//                            // A pending intent that that is reused when calling removeGeofences(). This
-//                            // pending intent is used to generate an intent when a matched geofence
-//                            // transition is observed.
-//                            getGeofencePendingIntent()
-//                    ).setResultCallback(MainActivity.this); // Result processed in onResult().
-//                } catch (SecurityException securityException) {
-//                    // Catch exception generated if the app does not use ACCESS_FINE_LOCATION permission.
-//                }
+
+                if (list != null) {
+                    if (!mGoogleApiClient.isConnected()) {
+                        Toast.makeText(MainActivity.this, "Not Connected", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    try {
+                        LocationServices.GeofencingApi.addGeofences(
+                                mGoogleApiClient,
+                                // The GeofenceRequest object.
+                                getGeofencingRequest(),
+                                // A pending intent that that is reused when calling removeGeofences(). This
+                                // pending intent is used to generate an intent when a matched geofence
+                                // transition is observed.
+                                getGeofencePendingIntent()
+                        ).setResultCallback(MainActivity.this); // Result processed in onResult().
+                    } catch (SecurityException securityException) {
+                        // Catch exception generated if the app does not use ACCESS_FINE_LOCATION permission.
+                    }
+                } else {
+                    Toast.makeText(MainActivity.this, "Add Fences First", Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+        });
+
+        ((Button) findViewById(R.id.button11)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog();
+
             }
         });
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -91,6 +113,69 @@ public class MainActivity extends AppCompatActivity implements
         });
     }
 
+    public void alertDialog() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+
+        View v = getLayoutInflater().inflate(R.layout.layout_alert, null);
+        final EditText key = (EditText) v.findViewById(R.id.key);
+        final EditText lati = (EditText) v.findViewById(R.id.latitude);
+        final EditText longi = (EditText) v.findViewById(R.id.longitude);
+        final EditText rad = (EditText) v.findViewById(R.id.radius);
+
+        alert.setView(v);
+        alert.setPositiveButton("Add Fence", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (!mGoogleApiClient.isConnected()) {
+                    Toast.makeText(MainActivity.this, "Not Connected", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                try {
+
+                    double lat = 0;
+                    double lon = 0;
+                    float radi = 0;
+                    lat = Double.parseDouble(lati.getText().toString());
+                    lon = Double.parseDouble(longi.getText().toString());
+                    radi = Float.parseFloat(rad.getText().toString());
+                    String keyy = key.getText().toString();
+                    if (lat == 0.0 && lon == 0.0 && radi == 0.0) {
+                        Toast.makeText(MainActivity.this, "Enter Lat Lon", Toast.LENGTH_SHORT).show();
+                    } else {
+                        LocationServices.GeofencingApi.addGeofences(
+                                mGoogleApiClient,
+                                // The GeofenceRequest object.
+                                getGeofenceRequest(0, lat, lon, radi, keyy),
+                                // A pending intent that that is reused when calling removeGeofences(). This
+                                // pending intent is used to generate an intent when a matched geofence
+                                // transition is observed.
+                                getGeofencePendingIntent()
+                        ).setResultCallback(new ResultCallback<Status>() {
+                            @Override
+                            public void onResult(Status status) {
+                                Toast.makeText(MainActivity.this, "added gence sucessfully", Toast.LENGTH_SHORT).show();
+
+                            }
+                        }); // Result processed in onResult().
+                        addToFirebase(lat, lon, radi, keyy);
+                    }
+
+
+                } catch (SecurityException securityException) {
+                    // Catch exception generated if the app does not use ACCESS_FINE_LOCATION permission.
+                }
+            }
+        });
+
+        alert.setTitle("What You Want To Do");
+
+        AlertDialog ad = alert.create();
+
+        alert.show();
+    }
+
     public void alert(final int position) {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
@@ -98,9 +183,9 @@ public class MainActivity extends AppCompatActivity implements
         final EditText lati = (EditText) v.findViewById(R.id.latitude);
         final EditText longi = (EditText) v.findViewById(R.id.longitude);
         final EditText rad = (EditText) v.findViewById(R.id.radius);
-        lati.setText(""+list.get(position).getLatitude());
-        longi.setText(""+list.get(position).getLongitude());
-        rad.setText(""+list.get(position).getRadiuse());
+        lati.setText("" + list.get(position).getLatitude());
+        longi.setText("" + list.get(position).getLongitude());
+        rad.setText("" + list.get(position).getRadiuse());
 
         alert.setView(v);
         alert.setPositiveButton("Edit", new DialogInterface.OnClickListener() {
@@ -201,50 +286,84 @@ public class MainActivity extends AppCompatActivity implements
         return builder.build();
     }
 
-//    public Geofence get(){
 
-    // }
-    public void populateGeofenceList() {
+    public void getListOfFences() {
+        mGeofenceList.clear();
+        FirebaseDatabase.getInstance().getReference().child("AppData").child("Fences").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                if (dataSnapshot != null) {
+                    pojo p = dataSnapshot.getValue(pojo.class);
+                    list.add(new pojo(p.latitude, p.longitude, p.radiuse, p.getId()));
+                    listView.setAdapter(adaptor);
+                    mGeofenceList.add(new Geofence.Builder()
+                            // Set the request ID of the geofence. This is a string to identify this
+                            // geofence.
+                            .setRequestId(p.getId())
+                            // Set the circular region of this geofence.
+                            .setCircularRegion(
+                                    p.getLatitude(),
+                                    p.getLongitude(), p.radiuse
 
-        for (Map.Entry<String, LatLng> entry : Constants.BAY_AREA_LANDMARKS.entrySet()) {
-            Log.d("ADNAN", entry.getKey());
+                            )
 
-            mGeofenceList.add(new Geofence.Builder()
-                    // Set the request ID of the geofence. This is a string to identify this
-                    // geofence.
-                    .setRequestId(entry.getKey())
-                    // Set the circular region of this geofence.
-                    .setCircularRegion(
-                            entry.getValue().latitude,
-                            entry.getValue().longitude,
-                            Constants.GEOFENCE_RADIUS_IN_METERS
-                    )
+                            // Set the expiration duration of the geofence. This geofence gets automatically
+                            // removed after this period of time.
+                            .setExpirationDuration(Constants.GEOFENCE_EXPIRATION_IN_MILLISECONDS)
 
-                    // Set the expiration duration of the geofence. This geofence gets automatically
-                    // removed after this period of time.
-                    .setExpirationDuration(Constants.GEOFENCE_EXPIRATION_IN_MILLISECONDS)
+                            // Set the transition types of interest. Alerts are only generated for these
+                            // transition. We track entry and exit transitions in this sample.
+                            .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER |
+                                    Geofence.GEOFENCE_TRANSITION_EXIT)
 
-                    // Set the transition types of interest. Alerts are only generated for these
-                    // transition. We track entry and exit transitions in this sample.
-                    .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER |
-                            Geofence.GEOFENCE_TRANSITION_EXIT)
+                            // Create the geofence.
+                            .build());
 
-                    // Create the geofence.
-                    .build());
+                } else {
+                }
+            }
 
-            double latitude = entry.getValue().latitude;
-            double longitude = entry.getValue().longitude;
-            float radiusInMeters = Constants.GEOFENCE_RADIUS_IN_METERS;
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
-            list.add(new pojo(latitude, longitude, radiusInMeters, entry.getKey()));
-            listView.setAdapter(adaptor);
-            adaptor.notifyDataSetChanged();
+            }
 
-        }
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public void addToFirebase(double latitude, double longitude, float radiusInMeters, String key) {
+        FirebaseDatabase.getInstance().getReference().child("AppData").child("Fences").child(key).setValue(new pojo(latitude, longitude, radiusInMeters, key), new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                if (databaseError != null) {
+                    Toast.makeText(MainActivity.this, "" + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+
+                } else {
+                    Toast.makeText(MainActivity.this, "Sucessfull", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
+
+
     }
 
     protected synchronized void buildGoogleApiClient() {
-        Log.d("YOOO","build");
+        Log.d("YOOO", "build");
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -269,7 +388,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onConnectionSuspended(int i) {
-        Log.d("YOOO","Suspend");
+        Log.d("YOOO", "Suspend");
 
         mGoogleApiClient.connect();
 
@@ -301,7 +420,7 @@ public class MainActivity extends AppCompatActivity implements
     protected void onStart() {
         super.onStart();
         if (!mGoogleApiClient.isConnecting() || !mGoogleApiClient.isConnected()) {
-           Log.d("YOOO","onStart");
+            Log.d("YOOO", "onStart");
             mGoogleApiClient.connect();
         }
     }
