@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">AddMob</string>
+    <string name="app_id">ca-app-pub-2036371847816366~9694744315</string>
+    <string name="app_unit">ca-app-pub-2036371847816366/9335651662</string>
+    <string name="app_banner">ca-app-pub-2036371847816366/4824070324</string>
+    <string name="title_activity_second_activiy">Interstitial</string>
+    <string name="msg_welcome">Welcome to Admob. Click on the below button to launch the Interstitial ad.</string>
+    <string name="btn_fullscreen_ad">Show Fullscreen Ad</string>
+
+
+</resources>
